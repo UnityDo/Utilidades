@@ -1,5 +1,13 @@
-﻿{
-	"name": "Utilidad",
-	 "references": ["com.unity.textmeshpro.Runtime"],
-	  "references": ["com.unity.textmeshpro.Editor"]
+{
+    "name": "Utilidad",
+    "references": ["Unity.TextMeshPro.Editor","Unity.TextMeshPro"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
