@@ -1,3 +1,5 @@
 ﻿{
-	"name": "Utilidad"
+	"name": "Utilidad",
+	 "references": ["com.unity.textmeshpro.Runtime"],
+	  "references": ["com.unity.textmeshpro.Editor"]
 }
