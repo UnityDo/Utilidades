@@ -95,9 +95,21 @@ public class Creacion : Editor
     [MenuItem("Utilidades/Crea Carpetas")]
     static void CreaCarpetas()
     {
-        AssetDatabase.CreateFolder("Assets", "Scripts");
         AssetDatabase.CreateFolder("Assets", "Animation");
-        AssetDatabase.CreateFolder("Assets", "Sprites");
+        AssetDatabase.CreateFolder("Assets", "Animator");
+        AssetDatabase.CreateFolder("Assets", "Editor");
+        AssetDatabase.CreateFolder("Assets", "Font");
+        AssetDatabase.CreateFolder("Assets", "Materials");
+        AssetDatabase.CreateFolder("Assets", "Models");
+        AssetDatabase.CreateFolder("Assets", "Prefabs");
+          AssetDatabase.CreateFolder("Assets", "Resources");
+            AssetDatabase.CreateFolder("Assets", "Scenes");
+              AssetDatabase.CreateFolder("Assets", "Scripts");
+              AssetDatabase.CreateFolder("Assets", "Shaders");
+              AssetDatabase.CreateFolder("Assets", "Skins");
+               AssetDatabase.CreateFolder("Assets", "Sounds");
+                AssetDatabase.CreateFolder("Assets", "Sprites");
+                AssetDatabase.CreateFolder("Assets", "Textures");
     }
     [MenuItem("Utilidades/Crea Paquete")]
     static void CreaCarpeta()
