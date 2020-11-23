@@ -102,8 +102,7 @@ public class Creacion : Editor
         AssetDatabase.CreateFolder("Assets", "Materials");
         AssetDatabase.CreateFolder("Assets", "Models");
         AssetDatabase.CreateFolder("Assets", "Prefabs");
-          AssetDatabase.CreateFolder("Assets", "Resources");
-            AssetDatabase.CreateFolder("Assets", "Scenes");
+          AssetDatabase.CreateFolder("Assets", "Resources");           
               AssetDatabase.CreateFolder("Assets", "Scripts");
               AssetDatabase.CreateFolder("Assets", "Shaders");
               AssetDatabase.CreateFolder("Assets", "Skins");
