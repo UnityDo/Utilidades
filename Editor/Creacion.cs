@@ -116,5 +116,12 @@ public class Creacion : Editor
         AssetDatabase.CreateFolder("Package", "Utilidades");
  
     }
+     [MenuItem("Utilidades/Crea Control")]
+    static void CreaControl()
+    {
+         GameObject control = new GameObject();
+         control.name="CONTROL";
+ 
+    }
 
 }
