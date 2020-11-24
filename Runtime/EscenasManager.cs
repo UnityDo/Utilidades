@@ -20,4 +20,8 @@ public class EscenasManager : MonoBehaviour
 	{
 		Application.Quit();
 	}
+	public void Reincia(){
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+	}
 }
