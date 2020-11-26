@@ -1,103 +1,105 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Constructor : MonoBehaviour
-{
-    public GameObject ladrilloBase;
-    public Transform posInicio;
-    [SerializeField]
-    int ladrilloFila=11;
-    [SerializeField]
-    int ladrilloColumna = 3;
-    //Donde 1 hay ladrillo 0 es un hueco
-    int[,] Patron = { { 1, 0, 1}, 
-                       { 1, 0, 1 }, 
-                        { 1, 0, 1} };
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class Constructor : MonoBehaviour {
+	public GameObject[] ladrillos_base;
+	public Transform pos_inicial;
+	static int[,] patron=new int[,]{{0,0,0,9,0},{0,1,1,1,1},{9,2,2,2,2}};
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    [ContextMenu("Crea Ladrillo Fila")]
-    void CreaLineaLadrillos()
-    {
-        Vector2 pos_aux = Vector2.zero;
-        for (int i = 0; i < ladrilloFila; i++)
-        {
-           GameObject clon_ladrillo= Instantiate(ladrilloBase, posInicio.position, Quaternion.identity) as GameObject;
-            //la posicion del obclon_ladrillojeto 
-            pos_aux.x = posInicio.position.x + clon_ladrillo.GetComponent<Collider2D>().bounds.size.x*i;
-            pos_aux.y = posInicio.position.y;
-            clon_ladrillo.transform.position = pos_aux;
+	public Texture2D imagen;
+	Color32[] Colores;
+	// Use this for initialization
+	void Start () {
+		//CreaLadrillosFila ();
+		CreaLadrillosFilayColumna ();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+	void CreaLadrillosFila(){
+		Vector2 pos_aux=Vector2.zero;
+		for (int i = 0; i < ladrillos_base.Length; i++) {
+			//GameObject clon_ladrillo = Instantiate (ladrillos_base [i]) as GameObject;
+			//GameObject clon_ladrillo = Instantiate (ladrillos_base [i],pos_inicial.position,Quaternion.identity) as GameObject;
 
-        }
-      
-    }
-    [ContextMenu("Crea Ladrillo Fila y Columna")]
-    void CreaLineaYColumnaLadrillos()
-    {
-        Vector2 pos_aux = Vector2.zero;
-        //Repetir por el numero de columnas
-        for (int j = 0; j < ladrilloColumna; j++)
-        {
-            for (int i = 0; i < ladrilloFila; i++)
-            {
-                
+			pos_aux.x += pos_inicial.position.x+ladrillos_base [i].GetComponent<SpriteRenderer> ().bounds.size.x;
+			pos_aux.y = pos_inicial.position.y;
+			GameObject clon_ladrillo = Instantiate (ladrillos_base [i],pos_aux,Quaternion.identity) as GameObject;
 
-                GameObject clon_ladrillo = Instantiate(ladrilloBase, posInicio.position, Quaternion.identity) as GameObject;
-                //la posicion del obclon_ladrillojeto 
-                pos_aux.x = posInicio.position.x + clon_ladrillo.GetComponent<Collider2D>().bounds.size.x * i;
-                pos_aux.y= posInicio.position.y + clon_ladrillo.GetComponent<Collider2D>().bounds.size.y * j;
-                clon_ladrillo.transform.position = pos_aux;
+		}
+	}
+	public void CreaLadrillosFilayColumna(){
+		Vector2 pos_aux=Vector2.zero;
+		int numero_columnas = 5;
+		for (int j = 0; j < numero_columnas; j++) {
+			for (int i = 0; i < ladrillos_base.Length; i++) {
+				//GameObject clon_ladrillo = Instantiate (ladrillos_base [i]) as GameObject;
+				//GameObject clon_ladrillo = Instantiate (ladrillos_base [i],pos_inicial.position,Quaternion.identity) as GameObject;
 
-            }        
-        }    
-    }
+				pos_aux.x += pos_inicial.position.x+ladrillos_base [i].GetComponent<SpriteRenderer> ().bounds.size.x;
 
-    [ContextMenu("Crea con Patron")]
-    void CreaConPatron()
-    {
-        Vector2 pos_aux = Vector2.zero;
-        float ancho = ladrilloBase.GetComponent<SpriteRenderer>().bounds.size.x;
-        float alto = ladrilloBase.GetComponent<SpriteRenderer>().bounds.size.y;
-       
-        
-        //Repetir por el numero de columnas
-        for (int j = 0; j <Patron.GetLength(1); j++)
-        {
-            for (int i = 0; i < Patron.GetLength(0); i++)
-            {    
-                pos_aux.x = posInicio.position.x + ancho * j;
-                pos_aux.y = posInicio.position.y - alto * i;
-            
-                //Construye solo si es un 1
-                if (Patron[i, j] == 1)
-                {
-                    GameObject clon_ladrillo = Instantiate(ladrilloBase, pos_aux, Quaternion.identity) as GameObject;
-                    
-                }                                            
-            }
-         
-        }
-    }
-    [ContextMenu("Destruye Ladrillos")]
-    void DestruyeLadrillos()
-    {
-        //Recoger todos los objetos con el tag Ladrillo
-       GameObject[] Ladrillos= GameObject.FindGameObjectsWithTag("Ladrillo");
-        foreach(GameObject ladrillo in Ladrillos)
-        {
-            //En tiempo de juego
-            // Destroy(ladrillo)
-            //En tiempo de edicion
-            DestroyImmediate(ladrillo);
-        }
-    }
+				GameObject clon_ladrillo = Instantiate (ladrillos_base [i],pos_aux,Quaternion.identity) as GameObject;
+
+			}
+			pos_aux.y -= pos_inicial.position.y + ladrillos_base [j].GetComponent<SpriteRenderer> ().bounds.size.y;
+			pos_aux.x = 0;
+		}
+
+	}
+	public void CreaLadrillosImagen(){
+
+		Colores = imagen.GetPixels32 ();
+
+		int cont = 0;
+		float altura = ladrillos_base[0].GetComponent<SpriteRenderer> ().bounds.size.y;
+		float anchura = ladrillos_base[0].GetComponent<SpriteRenderer> ().bounds.size.x;
+
+		for (int i = 0; i < imagen.height; i++) {
+			for (int j = 0; j < imagen.width; j++) {
+				if (Colores [cont] != Color.white) {
+					ladrillos_base [0].GetComponent<SpriteRenderer> ().color = Colores [cont];
+					Vector2 nueva_pos = new Vector2 (anchura * j+pos_inicial.position.x, altura * i+pos_inicial.position.y);
+					GameObject clon_ladrillo = Instantiate (ladrillos_base [0], nueva_pos, Quaternion.identity) as GameObject;
+				}
+				cont++;
+			}
+		}
+	
+	
+	}
+	public void CreaConPatron(){
+		Vector2 pos_aux=Vector2.zero;
+		float altura = ladrillos_base[0].GetComponent<SpriteRenderer> ().bounds.size.y;
+		float anchura = ladrillos_base[0].GetComponent<SpriteRenderer> ().bounds.size.x;
+		int cont = 0;
+		for (int j = 0; j < patron.GetLength (1); j++) {
+			for (int i = 0; i < patron.GetLength (0); i++) {
+				pos_aux.x += pos_inicial.position.x + anchura;
+				if (patron [i, j] != 9) {
+					
+					GameObject nuevo = (GameObject)Instantiate (ladrillos_base [patron [i, j]], pos_aux, Quaternion.identity);
+					cont++;
+
+				}
+
+			}
+			pos_aux.y -= pos_inicial.position.y + altura;
+			pos_aux.x = 0;
+
+		}
+	}
+	public void BorraLadrillos(){
+	//Buscar todos los elementos que tienen el tag ladrillo
+		GameObject[] ladrillos_copia=GameObject.FindGameObjectsWithTag("Ladrillo");
+
+		foreach (GameObject l in ladrillos_copia) {
+			DestroyImmediate (l,true);
+		}
+			
+		
+	}
 }
+
