@@ -40,7 +40,7 @@ public class Panel : MonoBehaviour
     IEnumerator FadeIn()
     {
         // de 0 a 1
-        for( float alfa = 0; alfa <= 1f; alfa += Time.deltaTime * velocidadFade ) {
+        for( float alfa = 0; alfa <= 1f; alfa += Time.unscaledDeltaTime * velocidadFade ) {
             grupoFade.alpha = alfa;
             yield return null;
         }
@@ -49,7 +49,7 @@ public class Panel : MonoBehaviour
     IEnumerator FadeOut()
     {
         // de 1 a 0
-        for( float alfa = 1; alfa >= 0; alfa -= Time.deltaTime * velocidadFade ) {
+        for( float alfa = 1; alfa >= 0; alfa -= Time.unscaledDeltaTime * velocidadFade ) {
             grupoFade.alpha = alfa;
             grupoScale.transform.localScale = new Vector3( alfa, alfa, 1 );
             yield return null;
@@ -61,7 +61,7 @@ public class Panel : MonoBehaviour
     IEnumerator ScaleIn()
     {
         // de 0 a 1
-        for( float alfa = 0; alfa <= 1f; alfa += Time.deltaTime * velocidadScale ) {
+        for( float alfa = 0; alfa <= 1f; alfa += Time.unscaledDeltaTime * velocidadScale ) {
             float elastic = EaseOutElastic( alfa );
             grupoScale.transform.localScale = new Vector3( elastic, elastic, 1 );
             yield return null;
@@ -71,7 +71,7 @@ public class Panel : MonoBehaviour
     IEnumerator ScaleOut()
     {
         // de 1 a 0
-        for( float alfa = 1; alfa >= 0; alfa -= Time.deltaTime * velocidadFade ) {
+        for( float alfa = 1; alfa >= 0; alfa -= Time.unscaledDeltaTime * velocidadFade ) {
             float elastic = EaseOutBack( alfa );
             grupoScale.transform.localScale = new Vector3( elastic, elastic, 1 );
             yield return null;
