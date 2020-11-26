@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Constructor))]
+[CustomEditor(typeof(ConstructorLadrillos))]
 public class VisualizaConstructor : Editor
 {
     //Modificar como pinta el inspector
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        Constructor Mitarget = (Constructor)target;
+        ConstructorLadrillos Mitarget = (ConstructorLadrillos)target;
         
         if(GUILayout.Button("Crea con Imagen"))
         {
