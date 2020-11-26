@@ -14,7 +14,7 @@ public class VisualizaConstructor : Editor
         
         if(GUILayout.Button("Crea con Imagen"))
         {
-            Mitarget.CreaConImagen();
+            Mitarget.CreaLadrillosImagen();
         }
         if (GUILayout.Button("Destruye Ladrillos"))
         {
