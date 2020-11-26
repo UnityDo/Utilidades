@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Constructor : MonoBehaviour {
+public class ConstructorLadrillos : MonoBehaviour {
 	public GameObject[] ladrillos_base;
 	public Transform pos_inicial;
 	static int[,] patron=new int[,]{{0,0,0,9,0},{0,1,1,1,1},{9,2,2,2,2}};
