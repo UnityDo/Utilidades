@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 //using Cinemachine;
 using UnityEditor;
+using System.Threading.Tasks;
 
 [ExecuteInEditMode]
 public class PlayerTool : Editor
@@ -50,8 +51,14 @@ public class PlayerTool : Editor
         // Do something
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = posicion + new Vector3(0,player.GetComponent<Collider>().bounds.size.y/2,0);
-
-       // EditorApplication.EnterPlaymode();
+        PlayAsync();
+    }
+    async static void PlayAsync()
+    {
+        Debug.Log("Waiting 1 second...");
+        await Task.Delay(1000);
+        EditorApplication.EnterPlaymode();
+        Debug.Log("After 1 second...");
     }
 }
     
